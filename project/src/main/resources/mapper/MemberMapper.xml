@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dao 위치를 연결 할 위치를 저장 namespace -->
+	<mapper namespace="com.project.dao.MemberDao">
+
+		<!-- 아이디 값은 dao 에서 선언된 메소드[ex) selectMemberInfo_mapper] 이름값 -->
+		<select id="selectMemberInfo_mapper" parameterType="String"
+			resultType="com.project.dto.MemberDto">
+			SELECT * FROM MEMBERS WHERE MID = #{inputId}
+		</select>
+
+		<select id="findMemberInfo" parameterType="mem"
+			resultType="mem">
+			SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{mpw}
+		</select>
+	</mapper>
+

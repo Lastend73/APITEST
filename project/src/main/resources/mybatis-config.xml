@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<!-- 약어 설정 방법 -->
+		<typeAlias type="com.project.dto.MemberDto" alias="mem" />
+		<typeAlias type="com.project.dto.Board" alias="bo" />
+
+	</typeAliases>
+	<mappers>
+		<!-- resource는 src/main/resources -->
+		<mapper resource="mapper/MemberMapper.xml" />
+		<mapper resource="mapper/BoardMapper.xml" />
+	</mappers>
+
+</configuration>

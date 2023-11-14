@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dao 위치를 연결 할 위치를 저장 namespace -->
+
+<mapper namespace="com.project.dao.BoardDao">
+
+	<insert id="InsertResult">
+		Insert INTO BOARDS (bno,bwriter,btitle,bcontents,bhits,bfilename,bdate,bstate) values(#{bno},#{bwriter},#{btitle},#{bcontents},0,#{bfilename},sysdate,'1')
+	</insert>
+	
+	<select id="selectBoards_map" resultType="hashmap">
+		SELECT BO.*,NVL(RE.RECOUNT,0) AS RECOUNT
+		FROM BOARDS BO 
+			LEFT OUTER JOIN (SELECT REBNO, COUNT(REBNO) AS RECOUNT
+			FROM REPLYS
+			WHERE RESTATE='1'
+			GROUP BY REBNO) RE
+			ON BO.BNO = RE.REBNO
+			WHERE BO.BSTATE='1'
+			ORDER BY BO.BDATE DESC
+			
+	</select>
+
+</mapper>
+
